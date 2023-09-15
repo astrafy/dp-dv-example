@@ -1,0 +1,71 @@
+name: dv_demo
+profile: astrafy
+version: '5.4.0'
+require-dbt-version: ['>=1.0.0', '<2.0.0']
+
+model-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+docs-paths: ["docs"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+vars:
+  load_date: '1992-01-08'
+  tpch_size: 10 #1, 10, 100, 1000, 10000
+
+models:
+  +tags: dv_demo
+  +persist_docs:
+    relation: true
+    columns: true
+  dbtvault_snowflake_demo:
+    staging:
+      raw_stage:
+        +materialized: view
+        +tags:
+          - 'raw'
+      stage:
+        +materialized: view
+        +tags:
+          - 'stage'
+        +enabled: true
+    data_warehouse:
+      raw_vault:
+        +materialized: incremental
+        +tags:
+          - 'raw_vault'
+        hubs:
+          +tags:
+            - 'hub'
+        links:
+          +tags:
+            - 'link'
+        sats:
+          +tags:
+            - 'satellite'
+        t_links:
+          +tags:
+            - 't_link'
+
+  elementary:
+    +enabled: true
+
+  dbt_project_evaluator:
+    +enabled: true
+
+  dbt_artifacts:
+    +enabled: true
+
+seeds:
+  +tags: dv_demo
+
+tests:
+  +tags: dv_demo
+  +store_failures: "{{ (target.name in ('docs-prd', 'dv-demo-prd-ci-airflow', 'dv-demo-prd-ci-airflow', 'dv-demo-prd-ci-airflow', 'dv-demo-prd-ci-airflow:', 'sales-marketing-prd-ci-airflow', 'monitoring-prd-ci-airflow')) | as_bool }}"
