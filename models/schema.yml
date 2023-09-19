@@ -1,9 +1,9 @@
 version: 2
 
 sources:
-  - name: tpch_sample
-    database: SNOWFLAKE_SAMPLE_DATA
-    schema: TPCH_SF{{ var('tpch_size', 10) }}
+  - name: snowflake_dummy_data
+    database: "{{ var('landing_zone_project') }}"
+    schema: "{{ var('snowflake_dummy_data_dataset') }}"
     tables:
       - name: LINEITEM
       - name: CUSTOMER

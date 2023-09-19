@@ -1,0 +1,7 @@
+/logs
+/dbt_packages
+/target
+.idea
+.python-version
+data-contracts/.ipynb_checkpoints
+data-contracts/notebooks/.ipynb_checkpoints

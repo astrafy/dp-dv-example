@@ -19,13 +19,15 @@ clean-targets:
 vars:
   load_date: '1992-01-08'
   tpch_size: 10 #1, 10, 100, 1000, 10000
+  landing_zone_project: 'internal-data-aaa'
+  snowflake_dummy_data_dataset: 'bqdts_dv_demo'
 
 models:
   +tags: dv_demo
   +persist_docs:
     relation: true
     columns: true
-  dbtvault_snowflake_demo:
+  dv_demo:
     staging:
       raw_stage:
         +materialized: view
@@ -55,13 +57,13 @@ models:
             - 't_link'
 
   elementary:
-    +enabled: true
+    +enabled: false
 
   dbt_project_evaluator:
-    +enabled: true
+    +enabled: false
 
   dbt_artifacts:
-    +enabled: true
+    +enabled: false
 
 seeds:
   +tags: dv_demo
