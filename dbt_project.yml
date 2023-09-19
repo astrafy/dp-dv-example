@@ -1,7 +1,7 @@
 name: dv_demo
 profile: astrafy
 version: '5.4.0'
-require-dbt-version: ['>=1.0.0', '<2.0.0']
+require-dbt-version: ['>=1.6.0', '<2.0.0']
 
 model-paths: ["models"]
 analysis-paths: ["analysis"]
