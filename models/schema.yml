@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: snowflake_dummy_data
-    database: "{{ var('landing_zone_project') }}"
+    database: "{{ env_var('LZ_PROJECT_ID', 'internal-data-lz-dev-7c5c') }}"
     schema: "{{ var('snowflake_dummy_data_dataset') }}"
     tables:
       - name: LINEITEM

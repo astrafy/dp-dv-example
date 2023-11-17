@@ -19,7 +19,6 @@ clean-targets:
 vars:
   load_date: '1992-01-08'
   tpch_size: 10 #1, 10, 100, 1000, 10000
-  landing_zone_project: '{{ env_var("LZ_PROJECT_ID", "internal-data-lz-dev-7c5c") }}'
   snowflake_dummy_data_dataset: 'bqdts_dv_demo'
 
 models:
