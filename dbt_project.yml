@@ -21,6 +21,13 @@ vars:
   tpch_size: 10 #1, 10, 100, 1000, 10000
   snowflake_dummy_data_dataset: 'bqdts_dv_demo'
 
+flags:
+  partial_parse: true
+  use_colors: true
+  printer_width: 80
+  send_anonymous_usage_stats: false
+  require_explicit_package_overrides_for_builtin_materializations: false
+
 models:
   +tags: dv_demo
   +persist_docs:
@@ -64,6 +71,6 @@ models:
 seeds:
   +tags: dv_demo
 
-tests:
+data_tests:
   +tags: dv_demo
   +store_failures: "{{ (target.name in ('docs-prd', 'dv-demo-prd-ci-airflow', 'dv-demo-prd-ci-airflow', 'dv-demo-prd-ci-airflow', 'dv-demo-prd-ci-airflow:', 'sales-marketing-prd-ci-airflow', 'monitoring-prd-ci-airflow')) | as_bool }}"
